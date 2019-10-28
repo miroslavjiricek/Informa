@@ -1,11 +1,14 @@
 ﻿using InformaTest.Resource;
+using InformaTest.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -40,7 +43,31 @@ namespace InformaTest
         /// <param name="e">event</param>
         private void textBoxSearch_TextChanged(object sender, EventArgs e)
         {
-            vStudentsBindingSource.Filter = "[Name and Surname] Like '%" + textBoxSearch.Text + "%'"; 
+            var searchedText = textBoxSearch.Text;
+            //extracting date operator
+            var dateOperator = Validation.ExtractDataOperator(searchedText);
+            if (dateOperator != string.Empty)
+            {
+                //if has a first number has been already set
+                if (searchedText.Any(char.IsDigit))
+                {
+                    try
+                    {
+                        vStudentsBindingSource.Filter = "[Date of Birth] " + dateOperator + "'" + Validation.AutoFillDate(searchedText.Trim().Replace(dateOperator, "")) + "'";
+                    }
+                    catch
+                    {
+                        MessageBox.Show(CONST.INVALID_DATE);
+                    }
+                }
+            }
+            else
+            {
+                vStudentsBindingSource.Filter = "    [Name and Surname] Like '%" + searchedText + "%'"
+                                              + " or [School name] Like '%" + searchedText + "%'"
+                                              + " or [Country of School] Like '%" + searchedText + "%'";
+            }
+           
         }
     }
 }

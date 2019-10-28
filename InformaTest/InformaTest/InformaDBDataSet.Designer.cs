@@ -287,6 +287,8 @@ namespace InformaTest {
             
             private global::System.Data.DataColumn columnCountry_of_School;
             
+            private global::System.Data.DataColumn columnDate_of_Birth;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public V_StudentsDataTable() {
@@ -354,6 +356,14 @@ namespace InformaTest {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn Date_of_BirthColumn {
+                get {
+                    return this.columnDate_of_Birth;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -389,13 +399,14 @@ namespace InformaTest {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public V_StudentsRow AddV_StudentsRow(string Student_ID_card, string Name_and_Surname, string School_name, string Country_of_School) {
+            public V_StudentsRow AddV_StudentsRow(string Student_ID_card, string Name_and_Surname, string School_name, string Country_of_School, System.DateTime Date_of_Birth) {
                 V_StudentsRow rowV_StudentsRow = ((V_StudentsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Student_ID_card,
                         Name_and_Surname,
                         School_name,
-                        Country_of_School};
+                        Country_of_School,
+                        Date_of_Birth};
                 rowV_StudentsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowV_StudentsRow);
                 return rowV_StudentsRow;
@@ -422,6 +433,7 @@ namespace InformaTest {
                 this.columnName_and_Surname = base.Columns["Name and Surname"];
                 this.columnSchool_name = base.Columns["School name"];
                 this.columnCountry_of_School = base.Columns["Country of School"];
+                this.columnDate_of_Birth = base.Columns["Date of Birth"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -435,12 +447,15 @@ namespace InformaTest {
                 base.Columns.Add(this.columnSchool_name);
                 this.columnCountry_of_School = new global::System.Data.DataColumn("Country of School", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCountry_of_School);
+                this.columnDate_of_Birth = new global::System.Data.DataColumn("Date of Birth", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDate_of_Birth);
                 this.columnStudent_ID_card.AllowDBNull = false;
                 this.columnStudent_ID_card.MaxLength = 15;
                 this.columnName_and_Surname.ReadOnly = true;
                 this.columnName_and_Surname.MaxLength = 202;
                 this.columnSchool_name.MaxLength = 100;
                 this.columnCountry_of_School.MaxLength = 100;
+                this.columnDate_of_Birth.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -637,6 +652,17 @@ namespace InformaTest {
                 }
                 set {
                     this[this.tableV_Students.Country_of_SchoolColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime Date_of_Birth {
+                get {
+                    return ((global::System.DateTime)(this[this.tableV_Students.Date_of_BirthColumn]));
+                }
+                set {
+                    this[this.tableV_Students.Date_of_BirthColumn] = value;
                 }
             }
             
@@ -840,6 +866,7 @@ namespace InformaTest.InformaDBDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Name and Surname", "Name and Surname");
             tableMapping.ColumnMappings.Add("School name", "School name");
             tableMapping.ColumnMappings.Add("Country of School", "Country of School");
+            tableMapping.ColumnMappings.Add("Date of Birth", "Date of Birth");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -856,8 +883,8 @@ namespace InformaTest.InformaDBDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT [Student ID card], [Name and Surname], [School name], [Country of School] " +
-                "FROM dbo.V_Students";
+            this._commandCollection[0].CommandText = "SELECT        [Student ID card], [Name and Surname], [School name], [Country of S" +
+                "chool], [Date of Birth]\r\nFROM            V_Students";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

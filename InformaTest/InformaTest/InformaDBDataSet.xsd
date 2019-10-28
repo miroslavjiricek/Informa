@@ -12,7 +12,8 @@
               <DbSource ConnectionRef="InformaDBConnectionString (Settings)" DbObjectName="InformaDB.dbo.V_Students" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT [Student ID card], [Name and Surname], [School name], [Country of School] FROM dbo.V_Students</CommandText>
+                    <CommandText>SELECT        [Student ID card], [Name and Surname], [School name], [Country of School], [Date of Birth]
+FROM            V_Students</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -23,6 +24,7 @@
               <Mapping SourceColumn="Name and Surname" DataSetColumn="Name and Surname" />
               <Mapping SourceColumn="School name" DataSetColumn="School name" />
               <Mapping SourceColumn="Country of School" DataSetColumn="Country of School" />
+              <Mapping SourceColumn="Date of Birth" DataSetColumn="Date of Birth" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -34,7 +36,7 @@
   <xs:element name="InformaDBDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="InformaDBDataSet" msprop:Generator_UserDSName="InformaDBDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="V_Students" msprop:Generator_TableClassName="V_StudentsDataTable" msprop:Generator_TableVarName="tableV_Students" msprop:Generator_TablePropName="V_Students" msprop:Generator_RowDeletingName="V_StudentsRowDeleting" msprop:Generator_RowChangingName="V_StudentsRowChanging" msprop:Generator_RowEvHandlerName="V_StudentsRowChangeEventHandler" msprop:Generator_RowDeletedName="V_StudentsRowDeleted" msprop:Generator_UserTableName="V_Students" msprop:Generator_RowChangedName="V_StudentsRowChanged" msprop:Generator_RowEvArgName="V_StudentsRowChangeEvent" msprop:Generator_RowClassName="V_StudentsRow">
+        <xs:element name="V_Students" msprop:Generator_TableClassName="V_StudentsDataTable" msprop:Generator_TableVarName="tableV_Students" msprop:Generator_RowChangedName="V_StudentsRowChanged" msprop:Generator_TablePropName="V_Students" msprop:Generator_RowDeletingName="V_StudentsRowDeleting" msprop:Generator_RowChangingName="V_StudentsRowChanging" msprop:Generator_RowEvHandlerName="V_StudentsRowChangeEventHandler" msprop:Generator_RowDeletedName="V_StudentsRowDeleted" msprop:Generator_RowClassName="V_StudentsRow" msprop:Generator_UserTableName="V_Students" msprop:Generator_RowEvArgName="V_StudentsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Student_x0020_ID_x0020_card" msprop:Generator_ColumnVarNameInTable="columnStudent_ID_card" msprop:Generator_ColumnPropNameInRow="Student_ID_card" msprop:Generator_ColumnPropNameInTable="Student_ID_cardColumn" msprop:Generator_UserColumnName="Student ID card">
@@ -65,6 +67,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="Date_x0020_of_x0020_Birth" msprop:Generator_ColumnVarNameInTable="columnDate_of_Birth" msprop:Generator_ColumnPropNameInRow="Date_of_Birth" msprop:Generator_ColumnPropNameInTable="Date_of_BirthColumn" msprop:Generator_UserColumnName="Date of Birth" type="xs:dateTime" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

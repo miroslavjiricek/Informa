@@ -18,5 +18,6 @@ namespace InformaTest.Models
         public string Name_and_Surname { get; set; }
         public string School_name { get; set; }
         public string Country_of_School { get; set; }
+        public System.DateTime Date_of_Birth { get; set; }
     }
 }

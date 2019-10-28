@@ -32,6 +32,7 @@
     <EntitySetMapping Name="V_Students">
       <EntityTypeMapping TypeName="InformaDBModel.V_Students">
         <MappingFragment StoreEntitySet="V_Students">
+          <ScalarProperty Name="Date_of_Birth" ColumnName="Date of Birth" />
           <ScalarProperty Name="Country_of_School" ColumnName="Country of School" />
           <ScalarProperty Name="School_name" ColumnName="School name" />
           <ScalarProperty Name="Name_and_Surname" ColumnName="Name and Surname" />

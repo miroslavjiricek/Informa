@@ -75,10 +75,12 @@
     <Key>
       <PropertyRef Name="Student_ID_card" />
       <PropertyRef Name="Name_and_Surname" />
+      <PropertyRef Name="Date_of_Birth" />
     </Key>
     <Property Name="Student_ID_card" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
     <Property Name="Name_and_Surname" Type="String" Nullable="false" MaxLength="202" FixedLength="false" Unicode="true" />
     <Property Name="School_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Country_of_School" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Date_of_Birth" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
 </Schema>

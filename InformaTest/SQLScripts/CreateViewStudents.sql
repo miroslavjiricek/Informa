@@ -3,7 +3,7 @@
 
 CREATE VIEW V_Students AS
 SELECT  dbo.Student.IdentityCard as 'Student ID card', dbo.Student.Name + ', ' + dbo.Student.Surname as 'Name and Surname'
-      , dbo.School.Name as 'School name', dbo.Country.Name as 'Country of School'
+      , dbo.School.Name as 'School name', dbo.Country.Name as 'Country of School', dbo.Student.DateOfBirth as 'Date of Birth'
   FROM  dbo.Student 
   LEFT JOIN dbo.School ON dbo.Student.IdSchool = dbo.School.Id 
   LEFT JOIN dbo.Country ON dbo.School.IdCountry = dbo.Country.Id

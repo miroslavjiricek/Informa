@@ -11,23 +11,10 @@ namespace InformaTest.Resource
     /// </summary>
     public static class CONST
     {
-       //-------STUDENTS GRID-----------------------
-       /// <summary>
-       ///column with ID Card index
-       /// </summary>
-       public const int ID_CARD = 0;
-       /// <summary>
-       ///column with ID Card index
-       /// </summary>
-       public const int NAME_AND_SURNAME = 1;
-       /// <summary>
-       /// column with Name of School index
-       /// </summary>
-       public const int NAME_OF_SCHOOL = 2;
-       /// <summary>
-       /// column with Name of country index
-       /// </summary>
-       public const int NAME_OF_COUNTRY = 3;
-       //-------------------------------------------
+       //-------REGEXs and SEARCHING
+       public const string DATE_OPERATORS = @"[<>=]";
+       public const string DIGIT = @"\d+";
+       //-------MESSAGES
+       public const string INVALID_DATE = @"Invalid date form. Please try different date format (yyyy/mm/dd)";
     }
 }
