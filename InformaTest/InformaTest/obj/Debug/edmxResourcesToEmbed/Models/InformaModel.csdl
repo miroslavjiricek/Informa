@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="InformaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="InformaDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Countries" EntityType="InformaDBModel.Country" />
+    <EntitySet Name="Schools" EntityType="InformaDBModel.School" />
+    <EntitySet Name="Students" EntityType="InformaDBModel.Student" />
+    <AssociationSet Name="FK_IdCountry" Association="InformaDBModel.FK_IdCountry">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="School" EntitySet="Schools" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IdSchool" Association="InformaDBModel.FK_IdSchool">
+      <End Role="School" EntitySet="Schools" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <EntitySet Name="V_Students" EntityType="InformaDBModel.V_Students" />
+  </EntityContainer>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Schools" Relationship="InformaDBModel.FK_IdCountry" FromRole="Country" ToRole="School" />
+  </EntityType>
+  <EntityType Name="School">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IdCountry" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Country" Relationship="InformaDBModel.FK_IdCountry" FromRole="School" ToRole="Country" />
+    <NavigationProperty Name="Students" Relationship="InformaDBModel.FK_IdSchool" FromRole="School" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="IdentityCard" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Surname" />
+      <PropertyRef Name="DateOfBirth" />
+      <PropertyRef Name="IdSchool" />
+    </Key>
+    <Property Name="IdentityCard" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Surname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="IdSchool" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="School" Relationship="InformaDBModel.FK_IdSchool" FromRole="Student" ToRole="School" />
+  </EntityType>
+  <Association Name="FK_IdCountry">
+    <End Type="InformaDBModel.Country" Role="Country" Multiplicity="1" />
+    <End Type="InformaDBModel.School" Role="School" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="School">
+        <PropertyRef Name="IdCountry" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IdSchool">
+    <End Type="InformaDBModel.School" Role="School" Multiplicity="1" />
+    <End Type="InformaDBModel.Student" Role="Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="School">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="IdSchool" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="V_Students">
+    <Key>
+      <PropertyRef Name="Student_ID_card" />
+      <PropertyRef Name="Name_and_Surname" />
+    </Key>
+    <Property Name="Student_ID_card" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Name_and_Surname" Type="String" Nullable="false" MaxLength="202" FixedLength="false" Unicode="true" />
+    <Property Name="School_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Country_of_School" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

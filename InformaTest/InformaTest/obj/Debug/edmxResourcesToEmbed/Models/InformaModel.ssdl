@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="InformaDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="School">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IdCountry" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'InformaDB.dbo.Student' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="IdentityCard" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Surname" />
+      <PropertyRef Name="DateOfBirth" />
+      <PropertyRef Name="IdSchool" />
+    </Key>
+    <Property Name="IdentityCard" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="DateOfBirth" Type="date" Nullable="false" />
+    <Property Name="IdSchool" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'InformaDB.dbo.V_Students' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="V_Students">
+    <Key>
+      <PropertyRef Name="Student ID card" />
+      <PropertyRef Name="Name and Surname" />
+    </Key>
+    <Property Name="Student ID card" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Name and Surname" Type="nvarchar" MaxLength="202" Nullable="false" />
+    <Property Name="School name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Country of School" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK_IdCountry">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="School" Type="Self.School" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="School">
+        <PropertyRef Name="IdCountry" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IdSchool">
+    <End Role="School" Type="Self.School" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="School">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="IdSchool" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="InformaDBModelStoreContainer">
+    <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="School" EntityType="Self.School" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Student].[IdentityCard] AS [IdentityCard], 
+    [Student].[Name] AS [Name], 
+    [Student].[Surname] AS [Surname], 
+    [Student].[DateOfBirth] AS [DateOfBirth], 
+    [Student].[IdSchool] AS [IdSchool]
+    FROM [dbo].[Student] AS [Student]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_Students" EntityType="Self.V_Students" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_Students].[Student ID card] AS [Student ID card], 
+    [V_Students].[Name and Surname] AS [Name and Surname], 
+    [V_Students].[School name] AS [School name], 
+    [V_Students].[Country of School] AS [Country of School]
+    FROM [dbo].[V_Students] AS [V_Students]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_IdCountry" Association="Self.FK_IdCountry">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="School" EntitySet="School" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IdSchool" Association="Self.FK_IdSchool">
+      <End Role="School" EntitySet="School" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="InformaDBModelStoreContainer" CdmEntityContainer="InformaDBEntities">
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="InformaDBModel.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Schools">
+      <EntityTypeMapping TypeName="InformaDBModel.School">
+        <MappingFragment StoreEntitySet="School">
+          <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="InformaDBModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="IdSchool" ColumnName="IdSchool" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IdentityCard" ColumnName="IdentityCard" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_Students">
+      <EntityTypeMapping TypeName="InformaDBModel.V_Students">
+        <MappingFragment StoreEntitySet="V_Students">
+          <ScalarProperty Name="Country_of_School" ColumnName="Country of School" />
+          <ScalarProperty Name="School_name" ColumnName="School name" />
+          <ScalarProperty Name="Name_and_Surname" ColumnName="Name and Surname" />
+          <ScalarProperty Name="Student_ID_card" ColumnName="Student ID card" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
